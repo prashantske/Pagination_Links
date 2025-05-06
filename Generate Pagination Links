@@ -1,5 +1,6 @@
+//=====================================================
 --  Helper Method to Generate Pagination Links
-//=-----====================================================
+//=====================================================
 
 public static List<LinkDto> CreatePaginationLinks(LinkGenerator linkGenerator,
     HttpContext httpContext,
@@ -48,3 +49,23 @@ public static List<LinkDto> CreatePaginationLinks(LinkGenerator linkGenerator,
 
     return links;
 }
+
+
+
+
+
+
+
+//--===========================================================
+ ------Usage in Your Handler or Controller
+//===========================================================
+
+
+var paginationLinks = CreatePaginationLinks(
+    _linkGenerator,
+    httpContext: httpContextAccessor.HttpContext!,
+    actionName: "GetEmployees",
+    currentPage: page,
+    pageSize: pageSize,
+    totalRecords: (int)totalCount
+);

@@ -1,5 +1,5 @@
 //=====================================================
---  Helper Method to Generate Pagination Links
+     ---Helper Method to Generate Pagination Links
 //=====================================================
 
 public static List<LinkDto> CreatePaginationLinks(LinkGenerator linkGenerator,
@@ -53,12 +53,9 @@ public static List<LinkDto> CreatePaginationLinks(LinkGenerator linkGenerator,
 
 
 
-
-
-
-//--===========================================================
- ------Usage in Your Handler or Controller
-//===========================================================
+//--========================================================
+        ------Usage in Your Handler or Controller
+//==========================================================
 
 
 var paginationLinks = CreatePaginationLinks(

@@ -1,0 +1,50 @@
+--  Helper Method to Generate Pagination Links
+//=-----====================================================
+
+public static List<LinkDto> CreatePaginationLinks(LinkGenerator linkGenerator,
+    HttpContext httpContext,
+    string actionName,
+    int currentPage,
+    int pageSize,
+    int totalRecords)
+{
+    var links = new List<LinkDto>();
+
+    var totalPages = (int)Math.Ceiling((double)totalRecords / pageSize);
+
+    // Self link
+    links.Add(new LinkDto(
+        linkGenerator.GetUriByAction(httpContext, action: actionName, values: new { page = currentPage, pageSize })!,
+        "self",
+        "GET"
+    ));
+
+    // Next link
+    if (currentPage < totalPages)
+    {
+        links.Add(new LinkDto(
+            linkGenerator.GetUriByAction(httpContext, action: actionName, values: new { page = currentPage + 1, pageSize })!,
+            "next",
+            "GET"
+        ));
+    }
+
+    // Previous link
+    if (currentPage > 1)
+    {
+        links.Add(new LinkDto(
+            linkGenerator.GetUriByAction(httpContext, action: actionName, values: new { page = currentPage - 1, pageSize })!,
+            "prev",
+            "GET"
+        ));
+    }
+
+    // Last link
+    links.Add(new LinkDto(
+        linkGenerator.GetUriByAction(httpContext, action: actionName, values: new { page = totalPages, pageSize })!,
+        "last",
+        "GET"
+    ));
+
+    return links;
+}
